@@ -56,7 +56,9 @@ const NSInteger defaultMaxHeight = 100;
     self = [super initWithFrame:frame];
     if (self) {
         // Insets for the entire MessageComposerView. Top inset is used as a minimum value of top padding.
-        _composerBackgroundInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+        CGFloat safeBottomInset = UIApplication.sharedApplication.windows.firstObject.safeAreaInsets.bottom;
+        CGFloat bottomInset = MAX(safeBottomInset, 10);
+        _composerBackgroundInsets = UIEdgeInsetsMake(10, 10, bottomInset, 10);
         // Insets only for the message UITextView. Default to 0
         _composerTVInsets = UIEdgeInsetsMake(0, 0, 0, 10);
         
@@ -149,7 +151,7 @@ const NSInteger defaultMaxHeight = 100;
 - (void)setupFrames {
     CGRect sendButtonFrame = self.bounds;
     sendButtonFrame.size.width = 100;
-    sendButtonFrame.size.height = defaultHeight - _composerBackgroundInsets.top;
+  sendButtonFrame.size.height = defaultHeight - _composerBackgroundInsets.top; //- _composerBackgroundInsets.bottom;
     sendButtonFrame.origin.x = self.frame.size.width - _composerBackgroundInsets.right - sendButtonFrame.size.width;
     sendButtonFrame.origin.y = self.bounds.size.height - _composerBackgroundInsets.bottom - sendButtonFrame.size.height;
     [self.sendButton setFrame:sendButtonFrame];

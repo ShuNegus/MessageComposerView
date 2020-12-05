@@ -148,7 +148,7 @@ const NSInteger defaultMaxHeight = 100;
 
 - (void)setupFrames {
     CGRect sendButtonFrame = self.bounds;
-    sendButtonFrame.size.width = 60;
+    sendButtonFrame.size.width = 100;
     sendButtonFrame.size.height = defaultHeight - _composerBackgroundInsets.top - _composerBackgroundInsets.bottom;
     sendButtonFrame.origin.x = self.frame.size.width - _composerBackgroundInsets.right - sendButtonFrame.size.width;
     sendButtonFrame.origin.y = self.bounds.size.height - _composerBackgroundInsets.bottom - sendButtonFrame.size.height;
